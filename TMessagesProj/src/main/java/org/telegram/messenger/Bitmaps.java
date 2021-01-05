@@ -332,7 +332,7 @@ public class Bitmaps {
 
     public static Bitmap createScaledBitmap(Bitmap src, int dstWidth, int dstHeight, boolean filter) {
         if (Build.VERSION.SDK_INT >= 21) {
-            return Bitmap.createScaledBitmap(src, dstWidth, dstHeight, filter);
+            return Bitmap.createScaledBitmap(src, dstWidth*3, dstHeight*3, filter);
         }
         Matrix m;
         synchronized (Bitmap.class) {
