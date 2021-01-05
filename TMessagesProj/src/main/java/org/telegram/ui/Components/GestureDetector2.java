@@ -268,7 +268,7 @@ public class GestureDetector2 {
                             mHandler.sendEmptyMessageDelayed(TAP, DOUBLE_TAP_TIMEOUT);
                         }
                     } else {
-                        mDeferConfirmSingleTap = true;
+//                        mDeferConfirmSingleTap = true;
                     }
                 }
 
