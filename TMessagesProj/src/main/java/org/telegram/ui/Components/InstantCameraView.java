@@ -498,7 +498,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         if (!initCamera()) {
             return;
         }
-        MediaController.getInstance().pauseMessage(MediaController.getInstance().getPlayingMessageObject());
+//        MediaController.getInstance().pauseMessage(MediaController.getInstance().getPlayingMessageObject());
 
         cameraFile = new File(FileLoader.getDirectory(FileLoader.MEDIA_DIR_CACHE), SharedConfig.getLastLocalId() + ".mp4");
         SharedConfig.saveConfig();
@@ -552,7 +552,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         setVisibility(VISIBLE);
 
         startAnimation(true);
-        MediaController.getInstance().requestAudioFocus(true);
+//        MediaController.getInstance().requestAudioFocus(true);
     }
 
     public InstantViewCameraContainer getCameraContainer() {
@@ -686,7 +686,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             if (scheduleDate != 0) {
                 startAnimation(false);
             }
-            MediaController.getInstance().requestAudioFocus(false);
+//            MediaController.getInstance().requestAudioFocus(false);
         } else {
             cancelled = recordedTime < 800;
             recording = false;
@@ -713,7 +713,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             if (cancelled) {
                 NotificationCenter.getInstance(currentAccount).postNotificationName(NotificationCenter.audioRecordTooShort, recordingGuid, true, (int) recordedTime);
                 startAnimation(false);
-                MediaController.getInstance().requestAudioFocus(false);
+//                MediaController.getInstance().requestAudioFocus(false);
             }
         }
     }
@@ -757,7 +757,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             cameraFile.delete();
             cameraFile = null;
         }
-        MediaController.getInstance().requestAudioFocus(false);
+//        MediaController.getInstance().requestAudioFocus(false);
         startAnimation(false);
         blurBehindDrawable.show(false);
         invalidate();
@@ -2055,7 +2055,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                         NotificationCenter.getInstance(currentAccount).postNotificationName(NotificationCenter.audioDidSent, recordingGuid, videoEditedInfo, videoFile.getAbsolutePath(), keyframeThumbs);
                     }
                     didWriteData(videoFile, 0, true);
-                    MediaController.getInstance().requestAudioFocus(false);
+//                    MediaController.getInstance().requestAudioFocus(false);
                 });
             } else {
                 FileLoader.getInstance(currentAccount).cancelUploadFile(videoFile.getAbsolutePath(), false);

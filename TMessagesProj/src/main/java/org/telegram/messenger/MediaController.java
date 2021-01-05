@@ -3278,7 +3278,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             paused = true;
         }
 
-        requestAudioFocus(true);
+//        requestAudioFocus(true);
 
         try {
             feedbackView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
