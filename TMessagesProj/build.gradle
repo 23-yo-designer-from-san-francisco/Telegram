@@ -47,7 +47,6 @@ dependencies {
 android {
     compileSdkVersion 30
     buildToolsVersion '30.0.3'
-    ndkVersion "21.1.6352462"
 
     defaultConfig.applicationId = "org.telegram.messenger"
 
@@ -105,35 +104,6 @@ android {
             ndk.debugSymbolLevel = 'FULL'
         }
 
-        /*debugAsan {
-            debuggable true
-            jniDebuggable true
-            signingConfig signingConfigs.debug
-            applicationIdSuffix ".beta"
-            minifyEnabled true
-            multiDexEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-            packagingOptions {
-                doNotStrip "**.so"
-            }
-
-            sourceSets {
-                main {
-                    jniLibs {
-                        srcDir {
-                            'jniLibs'
-                        }
-                    }
-                    resources {
-                        srcDir {
-                            'jniRes'
-                        }
-                    }
-                }
-            }
-        }*/
-
         HA {
             debuggable false
             jniDebuggable false
@@ -161,10 +131,6 @@ android {
         manifest.srcFile 'config/debug/AndroidManifest.xml'
     }
 
-    /*sourceSets.debugAsan {
-        manifest.srcFile 'config/debug/AndroidManifest.xml'
-    }*/
-
     sourceSets.HA {
         manifest.srcFile 'config/debug/AndroidManifest.xml'
     }
@@ -184,14 +150,6 @@ android {
                 abiVersionCode = 1
             }
         }
-        x86 {
-            ndk {
-                abiFilters "x86"
-            }
-            ext {
-                abiVersionCode = 2
-            }
-        }
         armv7_SDK23 {
             ndk {
                 abiFilters "armeabi-v7a"
@@ -205,21 +163,6 @@ android {
             minSdkVersion 23
             ext {
                 abiVersionCode = 3
-            }
-        }
-        x86_SDK23 {
-            ndk {
-                abiFilters "x86"
-            }
-            sourceSets.debug {
-                manifest.srcFile 'config/debug/AndroidManifest_SDK23.xml'
-            }
-            sourceSets.release {
-                manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
-            }
-            minSdkVersion 23
-            ext {
-                abiVersionCode = 4
             }
         }
         arm64 {
@@ -256,9 +199,10 @@ android {
                 abiVersionCode = 7
             }
         }
-        x64_SDK23 {
+
+        arm64_SDK29 {
             ndk {
-                abiFilters "x86_64"
+                abiFilters "arm64-v8a"
             }
             sourceSets.debug {
                 manifest.srcFile 'config/debug/AndroidManifest_SDK23.xml'
@@ -266,26 +210,9 @@ android {
             sourceSets.release {
                 manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
             }
-            minSdkVersion 23
+            minSdkVersion 29
             ext {
-                abiVersionCode = 8
-            }
-        }
-        afat {
-            ndk {
-                abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
-            }
-            sourceSets.debug {
-                manifest.srcFile 'config/debug/AndroidManifest_SDK23.xml'
-            }
-            /*sourceSets.debugAsan {
-                manifest.srcFile 'config/debug/AndroidManifest_SDK23.xml'
-            }*/
-            sourceSets.release {
-                manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
-            }
-            ext {
-                abiVersionCode = 9
+                abiVersionCode = 7
             }
         }
     }
@@ -308,15 +235,15 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionName "7.3.1"
 
-        vectorDrawables.generatedDensities = ['mdpi', 'hdpi', 'xhdpi', 'xxhdpi']
+        vectorDrawables.generatedDensities = ['xhdpi', 'xxhdpi']
 
         externalNativeBuild {
             cmake {
                 version '3.10.2'
-                arguments '-DANDROID_STL=c++_static', '-DANDROID_PLATFORM=android-16', "-j=16"
+                arguments '-DANDROID_STL=c++_static', '-DANDROID_PLATFORM=android-16', "-j=4"
             }
         }
     }
